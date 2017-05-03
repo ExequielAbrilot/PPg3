@@ -4,142 +4,136 @@
 #define FILAS 9
 #define COLS 6
 
+
+
+
+
 char *dia[]={"Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"};
 int **matriz_horario,***matriz_asignatura,i,j,valorEntero;
 // Creacion matriz_asig.
 char *cabecera[]={"Asignatura","Horas","Dias Disponibles","Nombre profe"};
 //------------------------------------------------------------
 char **algorityprogra[]={"Algoritmos y Programacion","3",dia,"Sherlok"};
-char **EstructDeDato[]={"EST DATOS","1",dia,"Sherlok"};
-char **LengProgra[]={"LengPRogra","1",dia,"Sherlok"};
-char **Analisis[]={"Analisis","1",dia,"Sherlok"};
+char **EstructDeDato[]={"EST DATOS","3",dia,"Sherlok"};
+char **LengProgra[]={"LengPRogra","3",dia,"Sherlok"};
+char **Analisis[]={"Analisis","3",dia,"Sherlok"};
 //------------------------------------------------------------
-char **SistInfo[]={"Sist Info","1",dia,"Pepe"};
-char **IngSoft[]={"IngSoft","1",dia,"Pepe"};
-char **SO[]={"SO","1",dia,"Pepe"};
+char **SistInfo[]={"Sist Info","3",dia,"Pepe"};
+char **IngSoft[]={"IngSoft","3",dia,"Pepe"};
+char **SO[]={"SO","3",dia,"Pepe"};
 //------------------------------------------------------------
 char *diaHercules[]={"Lunes","Miercoles","Viernes"};
-char **TallerSITEC[]={"SITEC","1",diaHercules,"Hercules"};
-char **TecCom[]={"Tec Com","1",diaHercules,"Hercules"};
-char **TeleCom[]={"Tele comu","1",diaHercules,"Hercules"};
+char **TallerSITEC[]={"SITEC","3ti",diaHercules,"Hercules"};
+char **TecCom[]={"Tec Com","3",diaHercules,"Hercules"};
+char **TeleCom[]={"Tele comu","3",diaHercules,"Hercules"};
 //-------------------------------------------------------------
 char *diaCharles[]={"Lunes","Martes","Miercoles"};
-char **Intro[]={"Intro","1",diaCharles,"Charles"};
-char **BD[]={"BD","1",diaCharles,"Charles"};
-char **Teosis[]={"TEOSIS","1",diaCharles,"Charles"};
+char **Intro[]={"Intro","3",diaCharles,"Charles"};
+char **BD[]={"BD","3",diaCharles,"Charles"};
+char **Teosis[]={"TEOSIS","3",diaCharles,"Charles"};
 //--------------------------------------------------------------
 char *diaJanes[]={"Martes","Jueves","Sabado"};
-char **Grafo[]={"Grafo","1",diaJanes,"Janes"};
-char **Arqui[]={"Arqui","1",diaJanes,"Janes"};
+char **Grafo[]={"Grafo","3",diaJanes,"Janes"};
+char **Arqui[]={"Arqui","3",diaJanes,"Janes"};
 //---------------------------------------------------------------
 
 
-int funcion_rellena(int iniciaI, int iniciaJ, char *mellegodia, char *nombreasignatura, char *numeroHoras){
+int funcion_rellena(char *DiasDisponibles[30], char *NombreAsignatura, char *HorasDisponibles, int posicionAsignatura){
+    int j=1,i=0,k=0;
     char buffer[20];
-    //char *reemplazo= *numeroHoras;
-    //int val = (int)strtol(reemplazo, (char **)NULL, 10);
-    char *valorResta;
+    int instante=atoi(HorasDisponibles);
+    //printf("%s",DiasDisponibles[2]);
+    //printf("%s\n",itoa((atoi(HorasDisponibles)),buffer,10));
 
-    char *y=numeroHoras;
-    int val = (int)strtol(y, (char **)NULL, 10);
+    while (k<=5){
 
 
-    //printf("Este Es integer %d\n",valorentero);
+        while(i<=5){
+            while(j<=8){
 
-    while(iniciaI<=8){
+                if ((i==0) && (strcmp(DiasDisponibles[k],"Lunes")==0) && (strcmp(matriz_horario[j][i],"Vacio")==0) && (instante>0)){
+                    instante--;
+                    //printf("\n%d\n",posicionAsignatura);
+                    matriz_horario[j][i]=NombreAsignatura;
+                    //printf("%s-%d\n",itoa(instante,buffer,10),instante);
+                    matriz_asignatura[posicionAsignatura][1]= itoa(instante,buffer,10);
 
-        while(iniciaJ<=5){
-            printf("Si tengo %d\n",val);
-            if ((iniciaJ==0) && (strcmp(mellegodia,"Lunes")==0) && (strcmp(matriz_horario[iniciaI][iniciaJ],"Vacio")==0) && (atoi(numeroHoras)>0)){
-                matriz_horario[iniciaI][iniciaJ]=nombreasignatura;
-                val--;
-                valorResta=itoa(val,buffer,10);
 
-                matriz_asignatura[iniciaI][1]=valorResta;
-                //printf("num este es%s\n",matriz_asignatura[iniciaI][1]);
-                funcion_magica(iniciaI,iniciaJ+1);
 
-                //return;
+                }
 
+                else if (i==1 && strcmp(DiasDisponibles[k],"Martes")==0 && strcmp(matriz_horario[j][i],"Vacio")==0  && (instante>0)){
+                    instante--;
+                    matriz_horario[j][i]=NombreAsignatura;
+                    matriz_asignatura[posicionAsignatura][1]= itoa(instante,buffer,10);
+
+                }
+                else if (i==2 && strcmp(DiasDisponibles[k],"Miercoles")==0 && strcmp(matriz_horario[j][i],"Vacio")==0 && (instante>0)){
+                    instante--;
+                    matriz_horario[j][i]=NombreAsignatura;
+                    matriz_asignatura[posicionAsignatura][1]= itoa(instante,buffer,10);
+
+                }
+                else if (i==3 && strcmp(DiasDisponibles[k],"Jueves")==0 && strcmp(matriz_horario[j][i],"Vacio")==0 && (instante>0)){
+                    instante--;
+                    matriz_horario[j][i]=NombreAsignatura;
+                    matriz_asignatura[posicionAsignatura][1]= itoa(instante,buffer,10);
+
+                }
+                else if (i==4 && strcmp(DiasDisponibles[k],"Viernes")==0 && strcmp(matriz_horario[j][i],"Vacio")==0 && (instante>0)){
+                    instante--;
+                    matriz_horario[j][i]=NombreAsignatura;
+                    matriz_asignatura[posicionAsignatura][1]= itoa(instante,buffer,10);
+
+                }
+                else if (i==5 && strcmp(DiasDisponibles[k],"Sabado")==0 && strcmp(matriz_horario[j][i],"Vacio")==0 && (instante>0)){
+                    instante--;
+                    matriz_horario[j][i]=NombreAsignatura;
+                    matriz_asignatura[posicionAsignatura][1]= itoa(instante,buffer,10);
+
+                }
+                else if (instante==0){
+                        //printf("HOLA");
+                        return;
+
+                }
+
+            j++;
             }
-
-            else if (iniciaJ==1 && strcmp(mellegodia,"Martes")==0 && strcmp(matriz_horario[iniciaI][iniciaJ],"Vacio")==0  && (atoi(numeroHoras)>0)){
-                matriz_horario[iniciaI][iniciaJ]=nombreasignatura;
-
-
-                matriz_asignatura[iniciaI][1]=itoa(atoi(numeroHoras)-1,buffer,10);
-                funcion_magica(iniciaI,iniciaJ+1);
-                //return;
-            }
-            else if (iniciaJ==2 && strcmp(mellegodia,"Miercoles")==0 && strcmp(matriz_horario[iniciaI][iniciaJ],"Vacio")==0 && (atoi(numeroHoras)>0)){
-                matriz_horario[iniciaI][iniciaJ]=nombreasignatura;
-                char buffer[20];
-                int variable=itoa(numeroHoras,buffer,10)-1;
-                matriz_asignatura[iniciaI][1]=itoa(atoi(numeroHoras)-1,buffer,10);
-                funcion_magica(iniciaI,iniciaJ+1);
-                //return;
-            }
-            else if (iniciaJ==3 && strcmp(mellegodia,"Jueves")==0 && strcmp(matriz_horario[iniciaI][iniciaJ],"Vacio")==0 && (atoi(numeroHoras)>0)){
-                matriz_horario[iniciaI][iniciaJ]=nombreasignatura;
-
-                int variable=itoa(numeroHoras,buffer,10)-1;
-                matriz_asignatura[iniciaI][1]=itoa(atoi(numeroHoras)-1,buffer,10);
-                funcion_magica(iniciaI,iniciaJ+1);
-                //return;
-            }
-            else if (iniciaJ==4 && strcmp(mellegodia,"Viernes")==0 && strcmp(matriz_horario[iniciaI][iniciaJ],"Vacio")==0 && (atoi(numeroHoras)>0)){
-                matriz_horario[iniciaI][iniciaJ]=nombreasignatura;
-
-                int variable=itoa(numeroHoras,buffer,10)-1;
-                matriz_asignatura[iniciaI][1]=itoa(atoi(numeroHoras)-1,buffer,10);
-                funcion_magica(iniciaI,iniciaJ+1);
-                //return;
-            }
-            else if (iniciaJ==5 && strcmp(mellegodia,"Sabado")==0 && strcmp(matriz_horario[iniciaI][iniciaJ],"Vacio")==0 && (atoi(numeroHoras)>0)){
-                matriz_horario[iniciaI][iniciaJ]=nombreasignatura;
-
-                int variable=itoa(numeroHoras,buffer,10)-1;
-                matriz_asignatura[iniciaI][1]=itoa(atoi(numeroHoras)-1,buffer,10);
-                funcion_magica(iniciaI,iniciaJ+1);
-                //return;
-            }
-            else{
-                funcion_magica(iniciaI,iniciaJ+1);
-                return;
-            }
-
-
+        i++;
+        j=0;
         }
-
-
-
-
-        funcion_magica(iniciaI+1,0);
-        return;
+    k++;
+    j=0;
+    i=1;
     }
-
+    printf("\n--------------------------------------------------------\n");
 
 }
 
-int funcion_magica(int iniciaI,int iniciaJ){
-    int i,j,k;
+int funcion_magica(){
+    int i1,j1,k1;
+    int instante=atoi(matriz_asignatura[i1][1]);
 
+    for(i1=1;i1<=15;i1++){
 
-    for(i=1;i<=15;i++){
-
-        for(j=0;j<=2;j++){
-            if (j==2){
-                for (k=0;k<=2;k++){
-                    printf("%d-%d\n",iniciaI,iniciaJ);
-                    //printf("%d\n",i);
-                    //printf("%s-%s\n",matriz_asignatura[i][j][k],matriz_asignatura[i][0]);
-                    if (atoi(matriz_asignatura[i][1])!=0){
-                        funcion_rellena(iniciaI,iniciaJ,matriz_asignatura[i][j][k],matriz_asignatura[i][0],matriz_asignatura[i][1]);
-                        return;
+        for(j1=0;j1<=2;j1++){
+            if (j1==2){
+                for (k1=0;k1<=strlen(*matriz_asignatura[i1][j1]);k1++){
+                    if (instante!=0){
+                        break;
+                    }
+                    else{
+                        funcion_rellena(*&matriz_asignatura[i1][j1], matriz_asignatura[i1][0], matriz_asignatura[i1][1], i1);
+                    //return;
                     }
 
+
+
                 }
+
             }
+
 
 
         }
@@ -174,7 +168,7 @@ int main()
 
 
 
-
+    //Creacion matriz asignatura
     matriz_asignatura = (int **)malloc (FILAS*sizeof(int *));
     for (i=0;i<=15;i++){
         matriz_asignatura[i] = (int *) malloc (COLS*sizeof(int));
@@ -230,16 +224,18 @@ int main()
 
     }
 
-    funcion_magica(1,0);
+    funcion_magica();
 
-    int tu,poto;
-    for(tu=0;tu<=8;tu++){
-        for(poto=0;poto<=5;poto++){
-                printf("%s|",matriz_horario[tu][poto]);
+    int var1,var2;
+    for(var1=0;var1<=8;var1++){
+        for(var2=0;var2<=5;var2++){
+                printf("|  %s   |  ",matriz_horario[var1][var2]);
 
         }
         printf("\n");
     }
+
+
 
 
 
